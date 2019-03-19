@@ -1,16 +1,24 @@
 import de.bezier.guido.*;
-public int NUM_ROWS, NUM_COLS = 20;//Declare and initialize NUM_ROWS and NUM_COLS = 20
+public final int NUM_ROWS = 20;
+public final int NUM_COLS = 20;//Declare and initialize NUM_ROWS and NUM_COLS = 20
 private MSButton[][] buttons; //2d array of minesweeper buttons
-private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
-
+private ArrayList <MSButton> bombs = new ArrayList <MSButton>();
+//ArrayList of just the minesweeper buttons that are mine
 void setup ()
 {
+    
     size(400, 400);
     textAlign(CENTER,CENTER);
     
     // make the manager
     Interactive.make( this );
-    
+    buttons = new MSButton[20][20];
+    int row, col =(int)(Math.random()*20);
+    for(int r = 0; r < buttons.length; r++){
+        for(int c = 0; c < buttons[0].length; c++){
+            buttons[r][c] = new MSButton(r,c);
+        }
+    }
     //your code to initialize buttons goes here
     
     
@@ -19,12 +27,11 @@ void setup ()
 }
 public void setBombs()
 {
-    int[][] buttons = new int [20][20];
-    for(int r = 0; r < buttons.length; r++){
-        for(int c = 0; c< button[].length; c++){
-            button[r][c] = new MSButton;
-        }
-    }
+    int row = (int)(Math.random()*20);
+    int col = (int)(Math.random()*20);
+    if(bombs.contains(buttons) == false)
+        bombs.add(buttons[row][col]);
+    System.out.println(row + "," + col);
 }
 
 public void draw ()
@@ -56,8 +63,8 @@ public class MSButton
     
     public MSButton ( int rr, int cc )
     {
-        width = 400/NUM_COLS;
-        height = 400/NUM_ROWS;
+        width = 400/NUM_ROWS;
+        height = 400/NUM_COLS;
         r = rr;
         c = cc; 
         x = c*width;
@@ -86,8 +93,8 @@ public class MSButton
     {    
         if (marked)
             fill(0);
-        // else if( clicked && bombs.contains(this) ) 
-        //     fill(255,0,0);
+        else if( clicked && bombs.contains(this) ) 
+            fill(255,0,0);
         else if(clicked)
             fill( 200 );
         else 
