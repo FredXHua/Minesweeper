@@ -111,13 +111,36 @@ public class MSButton
     public boolean isValid(int r, int c)
     {
         if(r <= 19 && r >= 0 && c >= 0 && c <= 19)
-        System.out.pritrue;
+        return true;
         return false;
     }
     public int countBombs(int row, int col)
     {
         int numBombs = 0;
-        //your code here
+        if(isValid(row-1,col)&&bombs.contains(buttons[row-1][col])){
+            numBombs++;
+        }
+        if(isValid(row+1,col)&&bombs.contains(buttons[row+1][col])){
+            numBombs++;
+        }
+        if(isValid(row,col+1)&&bombs.contains(buttons[row][col+1])){
+            numBombs++;
+        }
+        if(isValid(row,col-1)&&bombs.contains(buttons[row][col-1])){
+            numBombs++;
+        }
+        if(isValid(row-1,col-1)&&bombs.contains(buttons[row-1][col-1])){
+            numBombs++;
+        }
+        if(isValid(row+1,col+1)&&bombs.contains(buttons[row+1][col+1])){
+            numBombs++;
+        }
+        if(isValid(row+1,col-1)&&bombs.contains(buttons[row+1][col-1])){
+            numBombs++;
+        }
+        if(isValid(row-1,col+1)&&bombs.contains(buttons[row-1][col+1])){
+            numBombs++;
+        }
         return numBombs;
     }
 }
