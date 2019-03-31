@@ -34,6 +34,8 @@ public void setBombs()
     System.out.println(row + "," + col);
     }
 }
+
+// hello this is Andrew here
 public void draw ()
 {
     background( 0 );
